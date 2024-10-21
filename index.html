@@ -6,6 +6,48 @@
     <title>Home</title>
     <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/interactive_functions.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll(".home-section");
+            const indicators = document.querySelectorAll(".navigation-indicator span");
+            let currentIndex = 0;
+            
+            function showCurrentSection() {
+                sections.forEach((section, index) => {
+                    section.style.display = index === currentIndex ? "block" : "none";
+                    indicators[index].classList.toggle("active", index === currentIndex);
+                });
+            }
+            
+            function switchSection() {
+                currentIndex = (currentIndex + 1) % sections.length;
+                showCurrentSection();
+            }
+            
+            showCurrentSection();
+            setInterval(switchSection, 5000);
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll(".home-section");
+            let currentIndex = 0;
+            
+            function showCurrentSection() {
+                sections.forEach((section, index) => {
+                    section.style.display = index === currentIndex ? "block" : "none";
+                });
+            }
+            
+            function switchSection() {
+                currentIndex = (currentIndex + 1) % sections.length;
+                showCurrentSection();
+            }
+            
+            showCurrentSection();
+            setInterval(switchSection, 5000);
+        });
+    </script>
 </head>
 <body class="home fade-in">
     <header class="home">
@@ -25,26 +67,27 @@
             <p>Ich heiße Alwin Litscher und das hier ist meine persönliche Website, wo ich meine Hobbys, Fähigkeiten und Kontaktdaten präsentiere.</p>
         </section>
         <section id="about-me" class="home-section">
-            <div class="about-me-content">
-                <div class="about-me-text fade-in">
-                    <h3>Wer bin ich?</h3>
-                    <p>Ich bin ein vielseitiger Mensch mit einer Leidenschaft für Technik, Musik und Abenteuer. Auf dieser Website können Sie mehr über meine Hobbys und Fähigkeiten erfahren.</p>
-                </div>
-            </div>
+            <h2>Wer bin ich?</h2>
+            <p>Ich bin ein vielseitiger Mensch mit einer Leidenschaft für Technik, Musik und Abenteuer. Auf dieser Website können Sie mehr über meine Hobbys und Fähigkeiten erfahren.</p>
         </section>
         <section id="work-info" class="home-section">
             <h2>Arbeitgeber und Auftrag</h2>
             <div class="work-info-content">
-                <div class="work-card hover-rotate">
+                <div class="work-card">
                     <h3>Mein Arbeitgeber</h3>
                     <p>Ich arbeite am <a href="https://www.psi.ch/de" target="_blank" class="highlight-link">Paul Scherrer Institut (PSI)</a>, einem führenden Forschungsinstitut in der Schweiz.</p>
                 </div>
-                <div class="work-card hover-rotate">
+                <div class="work-card">
                     <h3>Dieser Website-Auftrag</h3>
                     <p>Diese Website wurde als Auftrag von Aimo Altorfer erstellt, um meine Fähigkeiten und Hobbys zu präsentieren.</p>
                 </div>
             </div>
         </section>
+            <div class="navigation-indicator">
+            <span>⬤</span>
+            <span>⬤</span>
+            <span>⬤</span>
+        </div>
     </main>
     <footer class="home">
         <p>&copy; 2024 Alwin Litscher. Alle Rechte vorbehalten.</p>
@@ -62,9 +105,10 @@
         }
 
         .home-section {
+            display: none;
             padding: 40px;
             margin: 20px auto;
-            max-width: 1200px;
+            max-width: 800px;
             background: linear-gradient(135deg, #4F1787, #180161);
             color: #fff;
             border-radius: 15px;
@@ -77,20 +121,9 @@
             100% { opacity: 1; transform: scale(1); }
         }
 
-        .about-me-content {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .about-me-text {
-            flex: 1;
-        }
-
         .work-info-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
@@ -99,29 +132,6 @@
             background: #FB773C;
             color: #fff;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .work-card:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .hover-rotate {
-            transition: transform 0.4s;
-        }
-
-        .hover-rotate:hover {
-            transform: rotateY(15deg) rotateX(5deg);
-        }
-
-        .hover-zoom {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .hover-zoom:hover {
-            transform: scale(1.1);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
@@ -132,9 +142,31 @@
             }
 
             .work-info-content {
-                grid-template-columns: 1fr;
+                gap: 15px;
             }
         }
-    </style>
+            .navigation-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 10px;
+        }
+
+        .navigation-indicator span {
+            font-size: 1.5em;
+            color: #bbb;
+            transition: color 0.3s ease;
+        }
+
+        .navigation-indicator span.active {
+            color: #FB773C;
+        }
+
+        @keyframes fadeInSection {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        </style>
 </body>
 </html>
