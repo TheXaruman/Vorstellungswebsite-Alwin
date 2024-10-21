@@ -22,31 +22,26 @@
     <main class="hobbys">
         <section id="hobbys">
             <h2>Meine Hobbys</h2>
-            <ul>
+            <ul class="hobby-list">
                 <li class="fade-in">
                     <h3>Mit Freunden rausgehen</h3>
                     <p>Zeit mit Freunden draußen zu verbringen und die Natur zu genießen, ist mir sehr wichtig.</p>
-                    <img src="images/image5.jpg" alt="Mit Freunden rausgehen">
                 </li>
                 <li class="fade-in">
                     <h3>Schwertkampf</h3>
                     <p>Ich liebe es, mich in die Kunst des Schwertkampfes zu vertiefen. Es ist sowohl körperlich als auch mental anspruchsvoll.</p>
-                    <img src="images/image4.png" alt="Schwertkampf">
                 </li>
                 <li class="fade-in">
                     <h3>Programmieren</h3>
                     <p>Neue Technologien zu lernen und eigene Projekte zu entwickeln macht mir großen Spaß.</p>
-                    <img src="images/image3.png" alt="Programmieren">
                 </li>
                 <li class="fade-in">
                     <h3>Schlagzeug</h3>
                     <p>Das Schlagzeug gibt mir die Möglichkeit, meinen Rhythmus zu verbessern und mich kreativ auszudrücken.</p>
-                    <img src="images/image2.png" alt="Schlagzeug">
                 </li>
                 <li class="fade-in">
                     <h3>Euphonium spielen</h3>
                     <p>Ich spiele Euphonium und genieße die Musik, die dieses Instrument hervorbringt.</p>
-                    <img src="images/image.png" alt="Euphonium spielen">
                 </li>
             </ul>
         </section>
@@ -54,5 +49,53 @@
     <footer class="hobbys">
         <p>&copy; 2024 Alwin Litscher. Alle Rechte vorbehalten.</p>
     </footer>
+    <style>
+        /* Grafische Tricks */
+        .hobbys h2 {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: fadeInText 2s ease-in-out;
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .hobby-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .hobby-list li {
+            background: linear-gradient(135deg, #6a0572, #a90384);
+            color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: perspective(600px) rotateY(0deg) rotateX(0deg);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hobby-list li:hover {
+            transform: perspective(600px) rotateY(10deg) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hobby-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hobbys h2 {
+                font-size: 1.5em;
+            }
+
+            .hobby-list li {
+                padding: 15px;
+            }
+        }
+    </style>
 </body>
 </html>
